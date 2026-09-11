@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - To-Do App</title>
+
+```
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .register-box {
+        background: white;
+        width: 350px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        background: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #555;
+    }
+
+    a {
+        display: block;
+        margin-top: 15px;
+    }
+
+    #message {
+        margin-top: 15px;
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="register-box">
+
+    <h1>To-Do App</h1>
+    <h2>Create Account</h2>
+
+    <form id="registerForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter Email"
+            required
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Create Password"
+            required
+        >
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+        >
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <a href="/login.html">Already have an account? Login</a>
+
+</div>
+
+<script>
+
+    document
+        .getElementById("registerForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const message =
+                document.getElementById("message");
+
+            if (password !== confirmPassword) {
+
+                message.innerText =
+                    "Passwords do not match!";
+
+                return;
+            }
+
+            localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userPassword", password);
+
+            message.innerText =
+                "Registration successful!";
+
+            setTimeout(function() {
+
+                window.location.href = "/login.html";
+
+            }, 1000);
+
+        });
+
+</script>
+```
+
+</body>
+</html>
