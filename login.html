@@ -3,94 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Login - To-Do App</title>
 
     <style>
-        body {
+        * {
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            background: #f2f2f2;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f4f4;
+
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         .login-box {
+            width: 500px;
             background: white;
-            padding: 30px;
-            width: 320px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+
+            padding: 50px 40px;
+
+            border-radius: 14px;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
             text-align: center;
+            font-size: 40px;
+            margin: 0 0 25px;
+            color: #000;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin: 0 0 35px;
+            color: #000;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            box-sizing: border-box;
+            height: 53px;
+
+            padding: 0 16px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            font-size: 16px;
+            outline: none;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #333;
-            color: white;
+        input:focus {
+            border-color: #777;
+        }
+
+        .password-input {
+            padding-right: 55px;
+        }
+
+        .eye-button {
+            position: absolute;
+
+            right: 8px;
+            top: 0;
+
+            width: 45px;
+            height: 53px;
+
             border: none;
+            background: transparent;
+
+            color: #333;
+
+            font-size: 20px;
+
             cursor: pointer;
         }
 
-        a {
-            display: block;
-            margin-top: 15px;
+        .eye-button:hover {
+            background: transparent;
+        }
+
+        #errorMessage {
+            text-align: center;
+            color: red;
+
+            font-size: 14px;
+
+            margin: 0 0 15px;
+        }
+
+        .login-button {
+            width: 100%;
+            height: 51px;
+
+            background: #333;
+
+            color: white;
+
+            border: none;
+            border-radius: 5px;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #222;
+        }
+
+        .register-link {
+            text-align: center;
+
+            margin-top: 20px;
+
+            font-size: 20px;
+        }
+
+        .register-link a {
+            color: #551a8b;
+
+            text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-box">
+<div class="login-box">
 
-        <h1>To-Do App</h1>
-        <h2>Login</h2>
+    <h1>To-Do App</h1>
 
-        <input type="email" id="email" placeholder="Email">
+    <h2>Login</h2>
 
-        <input type="password" id="password" placeholder="Password">
+    <form id="loginForm">
 
-        <button onclick="login()">Login</button>
+        <div class="input-box">
 
-        <p id="message"></p>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
 
-        <a href="register.html">Create Account</a>
+        </div>
+
+
+        <div class="input-box">
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="password-input"
+                placeholder="Enter Password"
+                required
+            >
+
+            <button
+                type="button"
+                class="eye-button"
+                onclick="toggleLoginPassword()"
+            >
+                👁️
+            </button>
+
+        </div>
+
+
+        <p id="errorMessage"></p>
+
+
+        <button
+            type="submit"
+            class="login-button"
+        >
+            Login
+        </button>
+
+    </form>
+
+
+    <div class="register-link">
+
+        <a href="register.html">
+            Create Account
+        </a>
 
     </div>
 
-    <script>
+</div>
 
-        function login() {
 
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+<script src="script.js"></script>
 
-            const savedEmail = localStorage.getItem("userEmail");
-            const savedPassword = localStorage.getItem("userPassword");
+<script>
 
-            if (email === savedEmail && password === savedPassword) {
+function toggleLoginPassword() {
 
-                localStorage.setItem("loggedIn", "true");
+    const password =
+        document.getElementById("password");
 
-                window.location.href = "index.html";
+    const button =
+        document.querySelector(".eye-button");
 
-            } else {
 
-                document.getElementById("message").innerText =
-                    "Invalid email or password";
+    if (password.type === "password") {
 
-            }
-        }
+        password.type = "text";
 
-    </script>
+        button.textContent = "🙈";
+
+    } else {
+
+        password.type = "password";
+
+        button.textContent = "👁️";
+
+    }
+}
+
+</script>
 
 </body>
 </html>

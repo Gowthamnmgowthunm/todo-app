@@ -1,165 +1,251 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - To-Do App</title>
 
-```
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f2f2f2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-    .register-box {
-        background: white;
-        width: 350px;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        text-align: center;
-    }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    input {
-        width: 100%;
-        padding: 12px;
-        margin: 10px 0;
-        box-sizing: border-box;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-    }
+        .register-box {
+            width: 510px;
+            background: white;
+            padding: 50px 38px 40px;
+            border-radius: 14px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
 
-    button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        background: #333;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin: 0 0 25px;
+        }
 
-    button:hover {
-        background: #555;
-    }
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            margin: 0 0 35px;
+        }
 
-    a {
-        display: block;
-        margin-top: 15px;
-    }
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
 
-    #message {
-        margin-top: 15px;
-    }
-</style>
-```
+        input {
+            width: 100%;
+            height: 53px;
+            padding: 0 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            outline: none;
+        }
 
+        input:focus {
+            border-color: #777;
+        }
+
+        .password-input {
+            padding-right: 55px;
+        }
+
+        .eye-button {
+            position: absolute;
+            right: 8px;
+            top: 0;
+            width: 45px;
+            height: 53px;
+            border: none;
+            background: transparent;
+            color: #333;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .eye-button:hover {
+            background: transparent;
+        }
+
+        .message {
+            text-align: center;
+            color: red;
+            font-size: 14px;
+            margin: 0 0 15px;
+        }
+
+        .register-button {
+            width: 100%;
+            height: 51px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .register-button:hover {
+            background: #222;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .login-link a {
+            color: #551a8b;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-```
 <div class="register-box">
 
     <h1>To-Do App</h1>
+
     <h2>Create Account</h2>
 
     <form id="registerForm">
 
-        <input
-            type="text"
-            id="name"
-            placeholder="Enter Name"
-            required
-        >
+        <div class="input-box">
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter Name"
+                required
+            >
+        </div>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Enter Email"
-            required
-        >
+        <div class="input-box">
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email"
+                required
+            >
+        </div>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Create Password"
-            required
-        >
+        <div class="input-box">
 
-        <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            required
-        >
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="password-input"
+                placeholder="Create Password"
+                required
+            >
 
-        <button type="submit">Register</button>
+            <button
+                type="button"
+                class="eye-button"
+                onclick="togglePassword()"
+            >
+                👁️
+            </button>
+
+        </div>
+
+        <div class="input-box">
+
+            <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="password-input"
+                placeholder="Confirm Password"
+                required
+            >
+
+            <button
+                type="button"
+                class="eye-button"
+                onclick="toggleConfirmPassword()"
+            >
+                👁️
+            </button>
+
+        </div>
+
+        <p id="message" class="message"></p>
+
+        <button
+            type="submit"
+            class="register-button"
+        >
+            Register
+        </button>
 
     </form>
 
-    <p id="message"></p>
-
-    <a href="/login.html">Already have an account? Login</a>
+    <div class="login-link">
+        <a href="login.html">
+            Already have an account? Login
+        </a>
+    </div>
 
 </div>
 
+<script src="script.js"></script>
+
 <script>
 
-    document
-        .getElementById("registerForm")
-        .addEventListener("submit", function(event) {
+function togglePassword() {
 
-            event.preventDefault();
+    const password =
+        document.getElementById("password");
 
-            const name =
-                document.getElementById("name").value;
+    const button =
+        document.querySelectorAll(".eye-button")[0];
 
-            const email =
-                document.getElementById("email").value;
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "🙈";
+    } else {
+        password.type = "password";
+        button.textContent = "👁️";
+    }
+}
 
-            const password =
-                document.getElementById("password").value;
 
-            const confirmPassword =
-                document.getElementById("confirmPassword").value;
+function toggleConfirmPassword() {
 
-            const message =
-                document.getElementById("message");
+    const password =
+        document.getElementById("confirmPassword");
 
-            if (password !== confirmPassword) {
+    const button =
+        document.querySelectorAll(".eye-button")[1];
 
-                message.innerText =
-                    "Passwords do not match!";
-
-                return;
-            }
-
-            localStorage.setItem("userName", name);
-            localStorage.setItem("userEmail", email);
-            localStorage.setItem("userPassword", password);
-
-            message.innerText =
-                "Registration successful!";
-
-            setTimeout(function() {
-
-                window.location.href = "/login.html";
-
-            }, 1000);
-
-        });
+    if (password.type === "password") {
+        password.type = "text";
+        button.textContent = "🙈";
+    } else {
+        password.type = "password";
+        button.textContent = "👁️";
+    }
+}
 
 </script>
-```
 
 </body>
 </html>

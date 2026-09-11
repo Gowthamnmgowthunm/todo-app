@@ -1,32 +1,94 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My To-Do App</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do App</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <div class="app">
-      <h1>My To-Do App</h1>
-      <p class="subtitle">Organize your day, one task at a time.</p>
 
-      <div class="input-row">
-        <input id="taskInput" type="text" placeholder="Enter a task..." maxlength="100">
-        <button id="addBtn">Add</button>
-      </div>
+<div class="app">
 
-      <div class="stats">
-        <span id="taskCount">0 tasks</span>
-        <button id="clearBtn" class="clear">Clear completed</button>
-      </div>
+    <div class="header">
+        <div>
+            <h1>My To-Do App</h1>
+            <p>Stay organized and get things done.</p>
+        </div>
 
-      <ul id="taskList"></ul>
-      <p id="emptyMessage" class="empty">No tasks yet. Add your first task!</p>
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+
+    <!-- Add Task -->
+    <form id="todoForm">
+
+        <div class="top-row">
+
+            <input
+                type="text"
+                id="todoInput"
+                placeholder="What needs to be done?"
+                required
+            >
+
+            <select id="priority">
+                <option value="Low">Low</option>
+                <option value="Medium" selected>Medium</option>
+                <option value="High">High</option>
+            </select>
+
+        </div>
+
+
+        <div class="date-row">
+
+            <input
+                type="date"
+                id="taskDate"
+            >
+
+            <input
+                type="time"
+                id="taskTime"
+            >
+
+        </div>
+
+
+        <button type="submit" class="add-btn">
+            Add Task
+        </button>
+
+    </form>
+
+
+    <!-- Task information -->
+    <div class="task-header">
+
+        <span id="taskCount">
+            0 tasks remaining
+        </span>
+
+        <button
+            class="clear-btn"
+            onclick="clearCompleted()"
+        >
+            Clear completed
+        </button>
+
+    </div>
+
+
+    <!-- Tasks -->
+    <div id="todoList"></div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
